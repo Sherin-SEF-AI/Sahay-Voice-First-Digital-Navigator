@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/home/netcom/Desktop/Sahay-Hackathon/app"
+    ],
+    "allow": [
+      "Bash(git add:*)"
+    ]
+  }
+}

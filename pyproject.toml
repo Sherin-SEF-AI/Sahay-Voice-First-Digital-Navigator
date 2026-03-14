@@ -1,0 +1,25 @@
+[project]
+name = "sahay"
+version = "1.0.0"
+description = "SAHAY (सहाय) — Voice-controlled AI agent for navigating web applications. Just say what you need, SAHAY does the clicking."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Sherin Joseph Roy", email = "sherin@deepmost.ai"},
+]
+maintainers = [
+    {name = "DeepMost AI"},
+]
+keywords = ["voice-agent", "computer-use", "gemini", "accessibility", "adk"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
