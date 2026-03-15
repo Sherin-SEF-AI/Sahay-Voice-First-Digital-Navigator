@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHAY सहाय — Your Digital Helper</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=12">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-mark">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <defs>
+                        <linearGradient id="lg1" x1="0" y1="0" x2="36" y2="36">
+                            <stop offset="0%" stop-color="#E8552D"/>
+                            <stop offset="100%" stop-color="#F2994A"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="36" height="36" rx="10" fill="url(#lg1)"/>
+                    <path d="M11 24 C11 17 18 10 18 10 C18 10 25 17 25 24" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="18" cy="24" r="2.8" fill="white"/>
+                    <circle cx="18" cy="15" r="1.5" fill="white" opacity="0.6"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <div class="brand-name">SAHAY <span class="hindi">सहाय</span></div>
+                <div class="brand-tagline">Voice-First Digital Navigator</div>
+            </div>
+        </div>
+        <div class="top-right">
+            <button id="stopTaskBtn" class="top-btn stop-btn" title="Stop current task (Esc)" style="display:none;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                Stop Task
+            </button>
+            <button id="takeoverBtn" class="top-btn takeover-btn" title="Click on screen to help agent" style="display:none;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l7.07 17 2.51-7.39L21 11.07z"/></svg>
+                Take Over
+            </button>
+            <button id="newTaskBtn" class="top-btn" title="Start a new task (Ctrl+N)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                New Task
+            </button>
+            <div id="guardianBadge" class="guardian-badge" style="display:none;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span id="guardianLabel">Protected</span>
+            </div>
+            <div id="connectionStatus" class="conn-badge disconnected">
+                <span class="conn-dot"></span>
+                <span class="status-text">Offline</span>
+            </div>
+            <div id="languageIndicator" class="lang-pill">EN</div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="workspace">
+        <!-- Browser Panel -->
+        <section class="browser-panel">
+            <div class="browser-chrome">
+                <div class="chrome-dots">
+                    <i class="dot r"></i><i class="dot y"></i><i class="dot g"></i>
+                </div>
+                <div class="chrome-url" id="currentUrl"></div>
+                <button id="fullscreenBtn" class="chrome-btn" title="Toggle fullscreen (F)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                </button>
+            </div>
+            <div class="browser-viewport" id="browserViewport">
+                <div class="welcome-state" id="placeholderMessage">
+                    <div class="welcome-hero">
+                        <div class="hero-decoration">
+                            <svg class="deco-ring" width="160" height="160" viewBox="0 0 160 160" fill="none">
+                                <circle cx="80" cy="80" r="70" stroke="#E8552D" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.3"/>
+                                <circle cx="80" cy="80" r="55" stroke="#E8552D" stroke-width="0.4" stroke-dasharray="2 8" opacity="0.2"/>
+                                <circle cx="80" cy="80" r="40" stroke="#F2994A" stroke-width="0.3" opacity="0.15"/>
+                            </svg>
+                            <div class="hero-icon-stack">
+                                <div class="hero-float hero-float-1">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8552D" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                </div>
+                                <div class="hero-float hero-float-2">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                </div>
+                                <div class="hero-float hero-float-3">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8552D" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="welcome-title">Namaste! Ready to help.</h2>
+                        <p class="welcome-desc">Tell me what you need — I'll navigate the web for you, step by step.</p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="suggestion-chip" data-text="Check my pension status on UMANG">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                            Check pension status
+                        </button>
+                        <button class="suggestion-chip" data-text="Book a train ticket on IRCTC">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            Book train ticket
+                        </button>
+                        <button class="suggestion-chip" data-text="Pay my electricity bill online">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            Pay electricity bill
+                        </button>
+                    </div>
+                </div>
+                <img id="screenImage" class="screen-image" alt="Browser screenshot" style="display:none;">
+                <div id="actionOverlay" class="action-overlay" style="display:none;">
+                    <span id="actionText"></span>
+                </div>
+                <div id="loadingSpinner" class="loading-spinner" style="display:none;">
+                    <div class="spinner"></div>
+                    <span>Working on it...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- GPA Panel -->
+            <div class="gpa-panel" id="gpaPanel">
+                <div class="gpa-head">
+                    <div class="gpa-head-left">
+                        <div class="gpa-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <span class="gpa-title">GPA Action Log</span>
+                        <span id="gpaModeBadge" class="gpa-mode-pill" style="display:none;"></span>
+                    </div>
+                    <button id="clearGpaBtn" class="panel-clear-btn" title="Clear action log">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m5-3h4a1 1 0 011 1v1H9V4a1 1 0 011-1z"/></svg>
+                    </button>
+                </div>
+                <div id="gpaTaskTitle" class="gpa-task">Waiting for task...</div>
+                <div id="gpaStepsContainer" class="gpa-steps">
+                    <div class="gpa-empty" id="gpaEmpty">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <p>Actions will appear here in real-time</p>
+                    </div>
+                </div>
+                <div id="gpaStatsBar" class="gpa-stats" style="display:none;">
+                    <div class="gs"><span class="gs-val" id="gpaStatsSteps">0/0</span><span class="gs-lbl">Steps</span></div>
+                    <div class="gs"><span class="gs-val" id="gpaStatsTime">0s</span><span class="gs-lbl">Time</span></div>
+                    <div class="gs"><span class="gs-val" id="gpaStatsHealed">0</span><span class="gs-lbl">Healed</span></div>
+                </div>
+            </div>
+
+            <!-- Transcript -->
+            <div class="transcript-panel">
+                <div class="tp-head">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span>Conversation</span>
+                    <div class="tp-head-actions">
+                        <button id="copyTranscriptBtn" class="panel-clear-btn" title="Copy transcript">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        </button>
+                        <button id="clearTranscriptBtn" class="panel-clear-btn" title="Clear transcript">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m5-3h4a1 1 0 011 1v1H9V4a1 1 0 011-1z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="transcriptLog" class="tp-log">
+                    <div class="transcript-empty">Say something to start...</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Control Bar -->
+    <footer class="control-bar">
+        <button id="helpButton" class="cb-help" title="What can SAHAY do?">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        </button>
+
+        <div class="cb-input-wrap">
+            <input type="text" id="textInput" class="cb-input" placeholder="Type your request..." aria-label="Type your request">
+            <button id="sendButton" class="cb-send" title="Send">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+
+        <button id="micButton" class="cb-mic" title="Click to speak">
+            <span class="mic-pulse-ring"></span>
+            <span class="mic-body">
+                <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+            </span>
+            <span class="mic-label">Tap to Speak</span>
+        </button>
+
+        <div class="cb-vol">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#94A3B8"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+            <input type="range" id="volumeSlider" min="0" max="100" value="80" class="cb-vol-slider">
+        </div>
+    </footer>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmationDialog" class="dialog-overlay" style="display:none;">
+        <div class="dialog-box">
+            <div class="dialog-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <h3>Please Confirm</h3>
+            <p id="confirmationMessage" class="dialog-msg"></p>
+            <div class="dialog-actions">
+                <button id="confirmNo" class="da-cancel">Cancel</button>
+                <button id="confirmYes" class="da-confirm">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="/static/js/screen-viewer.js?v=12"></script>
+    <script src="/static/js/app.js?v=12"></script>
+</body>
+</html>

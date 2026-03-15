@@ -12,13 +12,17 @@ class Settings(BaseSettings):
     )
 
     # Google Cloud
-    google_cloud_project: str
+    google_cloud_project: str = ""
     google_cloud_location: str = "us-central1"
     google_genai_use_vertexai: bool = True
 
     # Gemini Models
     gemini_computer_use_model: str = "gemini-2.5-computer-use-preview-10-2025"
-    gemini_voice_model: str = "gemini-2.5-flash-native-audio"
+    gemini_voice_model: str = "gemini-live-2.5-flash-native-audio"
+    gemini_planner_model: str = "gemini-2.5-flash"
+
+    # Google AI Studio (for Computer Use model)
+    google_api_key: str = ""
 
     # Firestore
     firestore_collection: str = "sahay_tasks"
@@ -28,7 +32,7 @@ class Settings(BaseSettings):
     screen_width: int = 1440
     screen_height: int = 900
     default_language: str = "hi"
-    browser_headless: bool = True
+    browser_headless: bool = False
 
 
 settings = Settings()

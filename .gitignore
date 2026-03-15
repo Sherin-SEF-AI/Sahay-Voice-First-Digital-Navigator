@@ -42,6 +42,10 @@ Thumbs.db
 *.tfstate.backup
 *.tfplan
 
+# Claude
+.claude/
+CLAUDE.md
+
 # Misc
 *.log
 .coverage
