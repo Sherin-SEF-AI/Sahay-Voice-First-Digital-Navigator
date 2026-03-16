@@ -288,11 +288,72 @@ sahay/
 
 ## Testing
 
+### Automated Tests
+
 ```bash
 python -m pytest tests/ -v
 ```
 
 The test suite covers the browser agent, voice agent, safety gate, task planner, and orchestration logic.
+
+### Reproducible Manual Testing
+
+Follow these steps to verify the system works end to end.
+
+**Prerequisites:**
+- Python 3.11+
+- Google Cloud project with Vertex AI API enabled
+- Valid `GOOGLE_API_KEY` or Application Default Credentials configured
+- Microphone access in your browser
+
+**Step 1: Start the server**
+
+```bash
+cp .env.example .env
+# Fill in your GOOGLE_API_KEY and GOOGLE_CLOUD_PROJECT in .env
+
+pip install -r requirements.txt
+playwright install chromium
+
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8080
+```
+
+**Step 2: Open the dashboard**
+
+Open `http://localhost:8080` in Chrome or Edge. Allow microphone access when prompted. You should see the SAHAY dashboard with a browser viewport on the left and a conversation panel on the right.
+
+**Step 3: Test voice command (English)**
+
+Speak into your microphone: "Find earbuds under 1000 rupees on Amazon"
+
+Expected result: The Planner Agent searches for Amazon, creates a plan, and the Browser Agent navigates to Amazon search results with the price filter applied. The plan steps appear in the right panel and turn green as they complete.
+
+**Step 4: Test voice command (Hindi)**
+
+Speak: "Wikipedia par Taj Mahal ke baare mein batao"
+
+Expected result: The agent responds in Hindi, navigates to the Wikipedia article for Taj Mahal, and speaks a summary back in Hindi.
+
+**Step 5: Test Safety Gate**
+
+Speak: "Log in to DigiLocker"
+
+Expected result: The agent navigates to DigiLocker. When it reaches the login page, a Safety Gate overlay appears asking for confirmation before proceeding with the login action. Click "Yes, Proceed" to continue or "Cancel" to abort.
+
+**Step 6: Test Stop and Rollback**
+
+Start any task. Press the Escape key to stop it immediately. Then type "go back" in the text input to undo the last navigation.
+
+**Step 7: Test Take Over**
+
+Click the "Take Over" button during any task. Click directly on the browser screenshot to interact with the page manually. Press Escape to return control to the agent.
+
+**Sample tasks that work reliably:**
+- "Find the best rated power bank under 1500 rupees on Amazon"
+- "Go to Wikipedia and tell me about ISRO"
+- "Search for yoga videos on YouTube"
+- "Amazon il wireless earbuds kaanichu tharoo" (Malayalam)
+- "Flipkart par Samsung 5G phone dikhao" (Hindi)
 
 ---
 
