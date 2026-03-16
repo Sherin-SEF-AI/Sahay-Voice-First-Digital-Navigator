@@ -8,6 +8,12 @@ Author: [Sherin Joseph Roy](https://github.com/Sherin-SEF-AI)
 
 `#GeminiLiveAgentChallenge`
 
+## Demo Video
+
+[![SAHAY Demo Video](https://img.youtube.com/vi/lu02QIqr-aM/maxresdefault.jpg)](https://youtu.be/lu02QIqr-aM)
+
+▶️ [Watch the full demo on YouTube](https://youtu.be/lu02QIqr-aM)
+
 ---
 
 ## Why This Exists
