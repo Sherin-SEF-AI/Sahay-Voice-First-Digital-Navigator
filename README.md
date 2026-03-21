@@ -10,7 +10,7 @@ Author: [Sherin Joseph Roy](https://github.com/Sherin-SEF-AI)
 
 ## Demo Video
 
-[![SAHAY Demo Video]
+SAHAY Demo Video
 https://youtu.be/tfWZ_wPbtug
 ---
 
