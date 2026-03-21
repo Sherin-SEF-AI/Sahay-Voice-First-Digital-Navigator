@@ -10,12 +10,11 @@ Author: [Sherin Joseph Roy](https://github.com/Sherin-SEF-AI)
 
 ## Demo Video
 
-<p align="center">
-  <a href="https://youtu.be/tfWZ_wPbtug">
-    <img src="https://img.youtube.com/vi/tfWZ_wPbtug/0.jpg" alt="Watch Demo" />
-  </a>
-</p>
----
+## 🎥 Demo
+
+Click below to see the system in action:
+
+[![Watch the demo](https://img.youtube.com/vi/tfWZ_wPbtug/0.jpg)](https://youtu.be/tfWZ_wPbtug)
 
 ## Why This Exists
 
