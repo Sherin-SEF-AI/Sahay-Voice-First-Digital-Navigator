@@ -10,8 +10,11 @@ Author: [Sherin Joseph Roy](https://github.com/Sherin-SEF-AI)
 
 ## Demo Video
 
-SAHAY Demo Video
-https://youtu.be/tfWZ_wPbtug
+<p align="center">
+  <a href="https://youtu.be/tfWZ_wPbtug">
+    <img src="https://img.youtube.com/vi/tfWZ_wPbtug/0.jpg" alt="Watch Demo" />
+  </a>
+</p>
 ---
 
 ## Why This Exists
